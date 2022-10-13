@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import {registerValidation} from './validations/auth.js';
 import {validationResult} from 'express-validator'
 import UserModel from './models/user.js'
+import checkAuth from './utils/checkAuth.js'
 
 
 mongoose.connect('mongodb+srv://admin:wwwwww@cluster0.soz1hvz.mongodb.net/healther?retryWrites=true&w=majority')
@@ -15,7 +16,7 @@ const app = express();
 
 app.use(express.json());
 
-app.post('/auth/login', async (req, res) =>{
+app.post('/auth/login', async (req, res) => {
   try{
     const user = await UserModel.findOne({email: req.body.email});
 
@@ -51,7 +52,7 @@ app.post('/auth/login', async (req, res) =>{
   }
 })
 
-app.post('/auth/register', registerValidation, async (req, res) =>{
+app.post('/auth/register', registerValidation, async (req, res) => {
   try {
     const errors = validationResult(req);
   if (!errors.isEmpty()){
@@ -89,6 +90,23 @@ app.post('/auth/register', registerValidation, async (req, res) =>{
     console.log(err);
     return res.status(500).json({
       message: "Unable to register :("
+    });
+  }
+});
+
+app.get('/auth/me', checkAuth, async (req, res) => {
+  try{
+    const user = await UserModel.findById(req.userID);
+    if (!user){
+      return res.status(404).json({message: "No access"});
+    }
+    const {passwordHash, ...userData} = user._doc;
+  
+    return res.json(userData);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({
+      message: "Error"
     });
   }
 });
