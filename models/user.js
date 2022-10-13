@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true
     },
-    userSatatus: {
+    userPrime: {
       type: Boolean,
       required: true
     },
