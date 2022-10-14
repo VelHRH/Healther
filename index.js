@@ -16,7 +16,6 @@ app.post('/auth/login', login)
 
 app.post('/auth/register', registerValidation, register);
 
-app.get('/auth/me', checkAuth, getMe);
 
 app.listen(4444, (err) => {
   if (err){
