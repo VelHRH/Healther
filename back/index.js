@@ -8,6 +8,8 @@ mongoose.connect('mongodb+srv://admin:wwwwww@cluster0.soz1hvz.mongodb.net/health
 .then(() => console.log("DB OK"))
 .catch((err) => console.log("DB error", err));
 
+const PORT = process.env.PORT || 4444;
+
 const app = express();
 
 app.use(express.json());
@@ -18,7 +20,7 @@ app.post('/auth/register', registerValidation, register);
 
 app.get('/auth/me', checkAuth, getMe);
 
-app.listen(4444, (err) => {
+app.listen(PORT, (err) => {
   if (err){
     console.log(err);
   }

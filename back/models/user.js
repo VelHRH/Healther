@@ -1,7 +1,4 @@
-import { timeStamp } from "console";
 import mongoose from "mongoose";
-import { stringify } from "querystring";
-import internal from "stream";
 
 const userSchema = new mongoose.Schema(
   {
