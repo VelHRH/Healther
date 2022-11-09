@@ -1,8 +1,9 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import {registerValidation} from './validations/auth.js';
+import {registerValidation, loginValidation, createExerciseValidation} from './validations.js';
 import checkAuth from './utils/checkAuth.js'
-import {register, login, getMe} from './controllers/UserController.js'
+import * as UserController from './controllers/UserController.js'
+import * as ExerciseController from './controllers/ExerciseController.js'
 
 mongoose.connect('mongodb+srv://admin:wwwwww@cluster0.soz1hvz.mongodb.net/healther?retryWrites=true&w=majority')
 .then(() => console.log("DB OK"))
@@ -14,11 +15,12 @@ const app = express();
 
 app.use(express.json());
 
-app.post('/auth/login', login)
+app.post('/auth/login', loginValidation, UserController.login)
+app.post('/auth/register', registerValidation, UserController.register);
+app.get('/auth/me', checkAuth, UserController.getMe);
 
-app.post('/auth/register', registerValidation, register);
-
-app.get('/auth/me', checkAuth, getMe);
+app.post('/exercises', checkAuth, createExerciseValidation, ExerciseController.create);
+app.get('/exercises', ExerciseController.getAll);
 
 app.listen(PORT, (err) => {
   if (err){

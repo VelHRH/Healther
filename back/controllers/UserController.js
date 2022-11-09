@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import {validationResult} from 'express-validator'
-import UserModel from '../models/user.js'
+import UserModel from '../models/User.js'
 
 export const register = async (req, res) => {
   try {
@@ -83,7 +83,7 @@ export const login = async (req, res) => {
 
 export const getMe = async (req, res) => {
   try{
-    const user = await UserModel.findById(req.userID);
+    const user = await UserModel.findById(req.userId);
     if (!user){
       return res.status(404).json({message: "No access"});
     }
