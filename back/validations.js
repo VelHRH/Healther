@@ -1,21 +1,21 @@
 import {body} from 'express-validator'
 
 export const registerValidation = [
-  body('email', 'Неверная почта').isEmail(),
-  body('password', 'Пароль должен содержать минимум 5 символов').isLength({min: 5}),
-  body('fullName', 'Имя хотя бы из 3 символов').isLength({min: 3}),
-  body('avatarUrl', 'Неверная ссылка на аватар').optional().isURL()
+  body('email', 'Invalid email').isEmail(),
+  body('password', 'Password should be longer then 5 symbols').isLength({min: 5}),
+  body('fullName', 'At least 3 caracters in full name').isLength({min: 3}),
+  body('avatarUrl', 'Invalid avatar link').optional().isURL()
 ];
 
 export const loginValidation =[
-  body('email', 'Неверная почта').isEmail(),
-  body('password', 'Пароль должен содержать минимум 5 символов').isLength({min: 5}),
+  body('email', 'incorrect username or password').isEmail(),
+  body('password', 'incorrect username or password').isLength({min: 5}),
 ];
 
 export const createExerciseValidation =[
-  body('title', 'Введите название упражнения').isLength({min: 3}).isString(),
-  body('text', 'Введите описание упражнения').isLength({min: 10}).isString(),
-  body('repetitions', 'Введите количество повторений').isInt({min: 3}),
-  body('tags', 'Неверный формат тэгов').optional().isString(),
-  body('imageUrl', 'Неверная ссылка на изображение').optional().isString(),
+  body('title', 'Enter the name of the exercise').isLength({min: 3}).isString(),
+  body('text', 'Enter a description of the exercise').isLength({min: 10}).isString(),
+  body('repetitions', 'Enter the number').isInt(),
+  body('tags', 'Wrong tag format').optional().isString(),
+  body('imageUrl', 'Invalid image link').optional().isString(),
 ];
