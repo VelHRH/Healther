@@ -1,4 +1,5 @@
 import ExerciseModel from '../models/Exercise.js'
+import UserModel from '../models/User.js'
 import {validationResult} from 'express-validator'
 
 export const getAll = async (req, res) => {
@@ -17,6 +18,10 @@ export const getAll = async (req, res) => {
 export const getOne = async (req, res) => {
   try{
     const exerciseId = req.params.id;
+    console.log(req.userId);
+    const user = await UserModel.findById(req.userId);
+    let newStreak = user._doc.streak;
+    let newLastStreakUpdateDate;
     ExerciseModel.findOneAndUpdate(
       {
         _id: exerciseId,
@@ -39,7 +44,38 @@ export const getOne = async (req, res) => {
             message: "Exercise not found"
           });
         }
-        res.json(doc);
+        function isYesterday(date) {
+          const yesterday = new Date();
+          yesterday.setDate(yesterday.getDate() - 1);
+          if (yesterday.toDateString() === date.toDateString()) {
+            return true;
+          }
+          return false;
+        }
+        isYesterday(user.lastStreakUpdateDate) ? newStreak++ : newStreak = 0;
+        newLastStreakUpdateDate = new Date();
+        console.log(req.userId);
+        try{
+          UserModel.updateOne(
+            {
+              _id: user._doc._id,
+            },
+            { 
+              email: user._doc.email,
+              fullName: user._doc.fullName,
+              passwordHash: user._doc.passwordHash,
+              avatarUrl: user._doc.atarUrl,
+              userPrime: user._doc.userPrime,
+              streak: newStreak,
+              lastStreakUpdateDate: new Date(),
+            }
+          );
+        }
+        catch(e){
+          console.log(e);
+        }
+        
+        res.json(new Date());
       }
     )
   }

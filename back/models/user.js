@@ -24,6 +24,14 @@ const UserSchema = new mongoose.Schema(
       required: true
     },
     avatarUrl: String,
+    streak: {
+      type: Number,
+      default: 0
+    },
+    lastStreakUpdateDate: {
+      type: Date,
+      default: '2022-10-10'
+    },
   },
   {
     timestamps: true,
