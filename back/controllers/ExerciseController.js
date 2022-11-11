@@ -55,7 +55,7 @@ export const getOne = async (req, res) => {
       return false;
     }
     isYesterday(user.lastStreakUpdateDate) ? newStreak++ : newStreak = 0;
-    UserModel.updateOne(
+    await UserModel.updateOne(
         {
           _id: user._doc._id,
         },

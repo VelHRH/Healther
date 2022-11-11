@@ -19,3 +19,9 @@ export const createExerciseValidation =[
   body('tags', 'Wrong tag format').optional().isString(),
   body('imageUrl', 'Invalid image link').optional().isString(),
 ];
+
+export const createProductValidation =[
+  body('title', 'Enter the name of the product').isLength({min: 3}).isString(),
+  body('cals', 'Enter the number').isInt(),
+  body('imageUrl', 'Invalid image link').isString(),
+];
