@@ -18,10 +18,8 @@ export const getAll = async (req, res) => {
 export const getOne = async (req, res) => {
   try{
     const exerciseId = req.params.id;
-    console.log(req.userId);
     const user = await UserModel.findById(req.userId);
     let newStreak = user._doc.streak;
-    let newLastStreakUpdateDate;
     ExerciseModel.findOneAndUpdate(
       {
         _id: exerciseId,
@@ -44,40 +42,41 @@ export const getOne = async (req, res) => {
             message: "Exercise not found"
           });
         }
-        function isYesterday(date) {
-          const yesterday = new Date();
-          yesterday.setDate(yesterday.getDate() - 1);
-          if (yesterday.toDateString() === date.toDateString()) {
-            return true;
-          }
-          return false;
-        }
-        isYesterday(user.lastStreakUpdateDate) ? newStreak++ : newStreak = 0;
-        newLastStreakUpdateDate = new Date();
-        console.log(req.userId);
-        try{
-          UserModel.updateOne(
-            {
-              _id: user._doc._id,
-            },
-            { 
-              email: user._doc.email,
-              fullName: user._doc.fullName,
-              passwordHash: user._doc.passwordHash,
-              avatarUrl: user._doc.atarUrl,
-              userPrime: user._doc.userPrime,
-              streak: newStreak,
-              lastStreakUpdateDate: new Date(),
-            }
-          );
-        }
-        catch(e){
-          console.log(e);
-        }
-        
-        res.json(new Date());
+    
+        res.json(doc);
       }
-    )
+    );
+    const isYesterday = (date) => {
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      if (yesterday.toDateString() === date.toDateString()) {
+        return true;
+      }
+      return false;
+    }
+    isYesterday(user.lastStreakUpdateDate) ? newStreak++ : newStreak = 0;
+    UserModel.updateOne(
+        {
+          _id: user._doc._id,
+        },
+        { 
+          email: user._doc.email,
+          fullName: user._doc.fullName,
+          passwordHash: user._doc.passwordHash,
+          avatarUrl: user._doc.atarUrl,
+          userPrime: user._doc.userPrime,
+          streak: newStreak,
+          lastStreakUpdateDate: new Date(),
+        },
+        (err) => {
+          if (err) {
+            console.log(err);
+            return res.status(500).json({
+              message: "Streak was not updated"
+            });
+          }
+        }
+      );
   }
   catch (err){
     console.log(err);
