@@ -15,7 +15,7 @@ export const loginValidation =[
 export const createExerciseValidation =[
   body('title', 'Enter the name of the exercise').isLength({min: 3}).isString(),
   body('text', 'Enter a description of the exercise').isLength({min: 10}).isString(),
-  body('repetitions', 'Enter the number').isInt(),
+  body('repetitions', 'Enter the number').isInt({min: 2}),
   body('tags', 'Wrong tag format').optional().isString(),
   body('imageUrl', 'Invalid image link').optional().isString(),
 ];
@@ -24,4 +24,9 @@ export const createProductValidation =[
   body('title', 'Enter the name of the product').isLength({min: 3}).isString(),
   body('cals', 'Enter the number').isInt(),
   body('imageUrl', 'Invalid image link').isString(),
+];
+
+export const createPrimeValidation =[
+  body('weight', 'Enter the real weight').isInt({min: 20}),
+  body('height', 'Enter the real height').isInt({min: 50, max: 250}),
 ];
