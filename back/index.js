@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import multer from 'multer';
 import {registerValidation, loginValidation, createExerciseValidation, createProductValidation, createPrimeValidation} from './validations.js';
 import checkAuth from './utils/checkAuth.js'
-import {UserController, ExerciseController, ProductController, PrimeController} from './controllers/index.js'
+import {UserController, ExerciseController, ProductController, PrimeController, MealController} from './controllers/index.js'
 
 mongoose.connect('mongodb+srv://admin:wwwwww@cluster0.soz1hvz.mongodb.net/healther?retryWrites=true&w=majority')
 .then(() => console.log("DB OK"))
@@ -40,6 +40,9 @@ app.get('/products', ProductController.getAll);
 app.post('/products', checkAuth, createProductValidation, ProductController.create);
 
 app.post('/prime', checkAuth, createPrimeValidation, PrimeController.create);
+
+app.get('/meals', MealController.getAll);
+app.post('/meals', MealController.create);
 
 app.post('/upload', checkAuth, upload.single('image'), (req, res) => {
   res.json({
