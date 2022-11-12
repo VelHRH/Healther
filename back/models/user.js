@@ -15,10 +15,6 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true
     },
-    passwordHash: {
-      type: String,
-      required: true
-    },
     userPrime: {
       type: Boolean,
       required: true
