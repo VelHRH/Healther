@@ -15,13 +15,43 @@ export const getAll = async (req, res) => {
   }
 };
 
+export const getOne = async (req, res) => {
+  try{
+    const mealId = req.params.id;
+    MealModel.findOne(
+      {
+        _id: mealId,
+      },
+      (err, doc) => {
+        if (err) {
+          console.log(err);
+          return res.status(500).json({
+            message: "Unable to get the recipe"
+          });
+        }
+        if (!doc){
+          return res.status(404).json({
+            message: "Recipe not found"
+          });
+        }
+        res.json(doc);
+      }
+    );
+  }
+  catch (err){
+    console.log(err);
+    return res.status(500).json({
+      message: "Unable to get the recipe"
+    });
+  }
+}
+
 export const create = async (req, res) => {
   try{
     const errors = validationResult(req);
     if (!errors.isEmpty()){
       return res.status(400).json(errors.array());
     }
-    
     const db = mongoose.connection;
     let calAvg = 0;
     for (let i = 0; i<req.body.products.length; i++) {
@@ -29,7 +59,6 @@ export const create = async (req, res) => {
       calAvg+= prod[0].cals
     }
     calAvg = Math.ceil(calAvg/req.body.products.length);
-      
     const doc = await new MealModel({
       title: req.body.title,
       recipe: req.body.recipe,
@@ -46,6 +75,40 @@ export const create = async (req, res) => {
     console.log(err);
     return res.status(500).json({
       message: "Unable to create recipes"
+    });
+  }
+};
+
+export const deleteM = async (req, res) => {
+  try{
+    const mealId = req.params.id;
+    MealModel.findOneAndDelete(
+      {
+        _id: mealId,
+        user: req.userId
+      },
+      (err, doc) => {
+        if (err) {
+          console.log(err);
+          return res.status(500).json({
+            message: "Unable to delete the recipe"
+          });
+        }
+        if (!doc){
+          return res.status(404).json({
+            message: "Meal not found"
+          });
+        }
+        res.json({
+          success: true
+        });
+      }
+    )
+  }
+  catch (err){
+    console.log(err);
+    return res.status(500).json({
+      message: "Unable to delete the recipe"
     });
   }
 };

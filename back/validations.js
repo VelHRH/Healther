@@ -30,3 +30,9 @@ export const createPrimeValidation =[
   body('weight', 'Enter the real weight').isInt({min: 20}),
   body('height', 'Enter the real height').isInt({min: 50, max: 250}),
 ];
+
+export const createMealValidation =[
+  body('title', 'Enter the name of dish').isLength({min: 2}).isString(),
+  body('recipe', 'Enter the text').isLength({min: 10}).isString(),
+  body('products', 'Not enough products').isLength({min: 2}).isArray(),
+];

@@ -1,9 +1,9 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import multer from 'multer';
-import {registerValidation, loginValidation, createExerciseValidation, createProductValidation, createPrimeValidation} from './validations.js';
+import {registerValidation, loginValidation, createExerciseValidation, createProductValidation, createPrimeValidation, createMealValidation} from './validations.js';
 import checkAuth from './utils/checkAuth.js'
-import {UserController, ExerciseController, ProductController, PrimeController, MealController} from './controllers/index.js'
+import {UserController, ExerciseController, ProductController, PrimeController, MealController, CheckController} from './controllers/index.js'
 
 mongoose.connect('mongodb+srv://admin:wwwwww@cluster0.soz1hvz.mongodb.net/healther?retryWrites=true&w=majority')
 .then(() => console.log("DB OK"))
@@ -42,7 +42,11 @@ app.post('/products', checkAuth, createProductValidation, ProductController.crea
 app.post('/prime', checkAuth, createPrimeValidation, PrimeController.create);
 
 app.get('/meals', MealController.getAll);
-app.post('/meals', MealController.create);
+app.post('/meals', checkAuth, createMealValidation, MealController.create);
+app.get('/meals/:id', MealController.getOne);
+app.delete('/meals/:id', checkAuth, MealController.deleteM);
+
+app.post('/check', checkAuth, CheckController.create);
 
 app.post('/upload', checkAuth, upload.single('image'), (req, res) => {
   res.json({
