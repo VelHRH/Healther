@@ -21,28 +21,24 @@ const PrimeSchema = new mongoose.Schema(
     },
     activities: {
       type: Array,
-      required: true,
-      default: ["running"]
+      required: true
     },
     breakfast: {
       type: Array,
-      required: true,
-      default: ["omelette"]
+      required: true
     },
     lunch: {
       type: Array,
-      required: true,
-      default: ["borsch"]
+      required: true
     },
     dinner: {
       type: Array,
-      required: true,
-      default: ["smashed potatoe"]
+      required: true
     }
   },
   {
     timestamps: true,
   }
 );
-
+PrimeSchema.index({createdAt: 1},{expireAfterSeconds: 2592000});
 export default mongoose.model('Prime', PrimeSchema);

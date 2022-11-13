@@ -40,6 +40,7 @@ app.get('/products', ProductController.getAll);
 app.post('/products', checkAuth, createProductValidation, ProductController.create);
 
 app.post('/prime', checkAuth, createPrimeValidation, PrimeController.create);
+app.get('/prime/:id', checkAuth, PrimeController.myPrime);
 
 app.get('/meals', MealController.getAll);
 app.post('/meals', checkAuth, createMealValidation, MealController.create);

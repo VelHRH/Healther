@@ -17,7 +17,7 @@ const UserSchema = new mongoose.Schema(
     },
     userPrime: {
       type: Boolean,
-      required: true
+      default: false
     },
     avatarUrl: String,
     streak: {

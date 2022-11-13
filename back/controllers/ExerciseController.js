@@ -55,7 +55,7 @@ export const getOne = async (req, res) => {
       return false;
     }
     isYesterday(user.lastStreakUpdateDate) ? newStreak++ : newStreak = 0;
-    await UserModel.updateOne(
+    UserModel.updateOne(
         {
           _id: user._doc._id,
         },
@@ -104,7 +104,7 @@ export const deleteEx = async (req, res) => {
         }
         if (!doc){
           return res.status(404).json({
-            message: "Exercise not found"
+            message: "Unable to delete the exercise"
           });
         }
         res.json({
