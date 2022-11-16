@@ -1,4 +1,3 @@
-
 export const NavItem = (props) => {
   if (!props.isActive){
     return(
