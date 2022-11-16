@@ -2,7 +2,7 @@ import { FireIcon } from "@heroicons/react/24/solid";
 
 export const Header = () => {
  return (
-  <div className="w-full flex border-b-4 border-violet-400 h-20 items-center px-20 justify-between fixed bg-slate-50 top-0">
+  <div className="w-full flex border-b-4 border-violet-400 h-20 items-center px-[8%] justify-between fixed bg-slate-50 top-0">
    <div className="font-bold text-transparent text-5xl bg-clip-text bg-gradient-to-r to-violet-500 from-violet-800 logo">
     healther
    </div>
