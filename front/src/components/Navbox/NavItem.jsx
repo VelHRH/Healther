@@ -1,7 +1,7 @@
 export const NavItem = (props) => {
   if (!props.isActive){
     return(
-      <div className="flex text-lg mt-1 p-2 rounded-lg border-4 border-transparent hover:bg-violet-300 text-slate-600">
+      <div className="flex text-lg mt-1 p-2 rounded-lg ease-in duration-200 border-4 border-transparent hover:bg-violet-300 text-slate-600">
         {props.icon}
         <div>{props.text}</div>
       </div>

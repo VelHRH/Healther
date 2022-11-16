@@ -1,4 +1,4 @@
-import { FireIcon } from "@heroicons/react/24/solid";
+import { FireIcon, BellAlertIcon } from "@heroicons/react/24/solid";
 
 export const Header = () => {
  return (
@@ -7,13 +7,14 @@ export const Header = () => {
     healther
    </div>
    <div className="flex">
-    <div className="text-orange-500 hover:text-orange-300 flex text-2xl cursor-pointer font-semibold items-center mr-7">
+    <BellAlertIcon className="w-8 text-red-500 mr-5 ease-in duration-200 hover:text-red-300" />
+    <div className="text-orange-500 ease-in duration-200 hover:text-orange-300 flex text-2xl cursor-pointer font-semibold items-center mr-7">
      <FireIcon className="w-8" />
      <div>112</div>
     </div>
 
     <img
-     src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
+     src="https://www.w3schools.com/howto/img_avatar2.png"
      alt="Profile"
      className="w-14 rounded-[50%] cursor-pointer"
     />
