@@ -9,7 +9,7 @@ import { NavItem } from "./NavItem";
 export const Navbox = () => {
  return (
   <>
-   <div className="hidden md:block">
+   <div className="hidden md:block md:w-1/5">
     <div
      className={`w-[12%] fixed top-24 left-[8%] cursor-pointer font-semibold`}
     >
@@ -34,7 +34,6 @@ export const Navbox = () => {
       isActive={false}
      />
     </div>
-    <div className="w-1/5 "></div>
    </div>
    <div className="md:hidden">
     <div
