@@ -4,7 +4,7 @@ import { exerciseReducer } from './slices/exercises';
 const store = configureStore(
   {
     reducer: {
-      posts: exerciseReducer,
+      exercises: exerciseReducer,
     }
   }
 );
