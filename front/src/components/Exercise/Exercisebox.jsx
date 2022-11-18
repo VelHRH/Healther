@@ -1,6 +1,11 @@
+import React from "react";
 import { Exercise } from "./Exercise";
+import axios from "../../axios";
 
 export const Exercisebox = () => {
+ React.useEffect(() => {
+  axios.get("/exercises");
+ }, []);
  return (
   <div className="w-full md:w-[50%] flex flex-wrap">
    <Exercise
