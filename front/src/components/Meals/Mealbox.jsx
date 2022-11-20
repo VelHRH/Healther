@@ -10,7 +10,6 @@ export const Mealbox = () => {
  React.useEffect(() => {
   dispatch(fetchMeals());
  }, []);
- console.log(meals);
  return (
   <div className="w-full md:w-[50%] flex flex-wrap mb-16 md:mb-0">
    {meals.items.map((obj) => (

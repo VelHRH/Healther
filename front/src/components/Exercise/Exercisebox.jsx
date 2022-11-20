@@ -14,6 +14,7 @@ export const Exercisebox = () => {
   <div className="w-full md:w-[50%] flex flex-wrap mb-16 md:mb-0">
    {exercises.items.map((obj) => (
     <Exercise
+     id={obj._id}
      title={obj.title}
      viewsCount={obj.viewsCount}
      imageUrl={obj.imageUrl}
