@@ -18,7 +18,7 @@ const initialState = {
 };
 
 const exerciseSlice = createSlice({
-  name: 'posts',
+  name: 'exercises',
   initialState,
   reducers: {},
   extraReducers: {

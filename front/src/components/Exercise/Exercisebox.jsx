@@ -11,8 +11,8 @@ export const Exercisebox = () => {
   dispatch(fetchExercises());
  }, []);
  return (
-  <div className="w-full md:w-[50%] flex flex-wrap">
-   {exercises.items.map((obj, index) => (
+  <div className="w-full md:w-[50%] flex flex-wrap mb-16 md:mb-0">
+   {exercises.items.map((obj) => (
     <Exercise
      title={obj.title}
      viewsCount={obj.viewsCount}
