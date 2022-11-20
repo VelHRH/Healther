@@ -2,7 +2,7 @@ import { FireIcon, BellAlertIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 
 export const Header = () => {
- const isLogged = true;
+ const isLogged = false;
  return (
   <div className="w-full flex border-b-4 border-violet-400 h-20 items-center px-[8%] justify-between fixed bg-slate-50 top-0">
    <Link to="/">
