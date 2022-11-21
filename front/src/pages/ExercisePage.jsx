@@ -8,12 +8,20 @@ import axios from "../axios";
 
 export function ExercisePage() {
  const [data, setData] = useState();
+ const [isLoading, setIsLoading] = useState(true);
  const { id } = useParams();
  useEffect(() => {
-  axios.get(`/exercises/${id}`).then((res) => {
-   setData(res.data);
-  });
+  setIsLoading(true);
+  axios
+   .get(`/exercises/${id}`)
+   .then((res) => {
+    setData(res.data);
+   })
+   .finally(() => setIsLoading(false));
  }, []);
+ if (isLoading) {
+  return <div>Loading...</div>;
+ }
  return (
   <>
    <Header />

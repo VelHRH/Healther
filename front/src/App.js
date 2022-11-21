@@ -4,8 +4,14 @@ import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { Meals } from './pages/Meals';
 import { Register } from "./pages/Register";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from 'react';
+import { fetchAuthMe, selectIsAuth } from './redux/slices/auth';
 
 function App() {
+  const dispatch = useDispatch();
+  const isAuth = useSelector(selectIsAuth);
+  useEffect(() => {dispatch(fetchAuthMe())},[])
   return(
     <>
       <Routes>
