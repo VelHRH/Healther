@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export const Meal = (props) => {
  return (
   <div className="w-full p-5 flex flex-col ease-in duration-200 cursor-pointer hover:bg-violet-400 rounded-lg text-violet-800">
-   <Link to="/meals/:id" className="w-full">
+   <Link to={`/meals/${props.id}`} className="w-full">
     <img
      src={props.imageUrl}
      alt="No image"

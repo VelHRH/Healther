@@ -23,10 +23,10 @@ export const Header = () => {
    </Link>
    <div className="flex">
     {isLogged && (
-     <BellAlertIcon className="w-6 md:w-8 text-red-500 mr-5 ease-in duration-200 hover:text-red-300" />
+     <BellAlertIcon className="w-6 md:w-8 text-red-500 mr-2 md:mr-5 ease-in duration-200 hover:text-red-300" />
     )}
     {isLogged && (
-     <div className="flex text-orange-500 ease-in duration-200 hover:text-orange-300 text-lg md:text-2xl cursor-pointer font-semibold items-center mr-7">
+     <div className="flex text-orange-500 ease-in duration-200 hover:text-orange-300 text-lg md:text-2xl cursor-pointer font-semibold items-center mr-3 md:mr-7">
       <FireIcon className="w-6 md:w-8" />
       <div>112</div>
      </div>
@@ -43,7 +43,7 @@ export const Header = () => {
       </Link>
       <div
        onClick={onClickLogout}
-       className="border-2 ml-3 border-red-600 p-2 rounded-md cursor-pointer text-slate-50 bg-red-600 hover:bg-transparent hover:text-red-600 ease-in duration-200"
+       className="border-2 ml-3 border-red-600 p-1 text-sm rounded-md cursor-pointer text-slate-50 bg-red-600 hover:bg-transparent hover:text-red-600 ease-in duration-200"
       >
        Log Out
       </div>

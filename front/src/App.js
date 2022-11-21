@@ -1,5 +1,6 @@
 import {Routes, Route} from 'react-router-dom'
 import { ExercisePage } from "./pages/ExercisePage";
+import { MealPage } from "./pages/MealPage";
 import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { Meals } from './pages/Meals';
@@ -20,6 +21,7 @@ function App() {
         <Route path='/auth/register' element={<Register />} />
         <Route path='/exercises/:id' element={<ExercisePage />} />
         <Route path='/meals' element={<Meals />} />
+        <Route path='/meals/:id' element={<MealPage />} />
       </Routes>
     </>
   );
