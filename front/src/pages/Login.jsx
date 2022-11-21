@@ -1,8 +1,10 @@
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { fetchAuth } from "../redux/slices/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
+import { fetchAuth, selectIsAuth } from "../redux/slices/auth";
 
 export function Login() {
+ const isAuth = useSelector(selectIsAuth);
  const dispatch = useDispatch();
  const {
   register,
@@ -17,16 +19,20 @@ export function Login() {
   mode: "onChange",
  });
  const onSubmit = (values) => {
-  console.log(values);
   dispatch(fetchAuth(values));
  };
+
+ if (isAuth) {
+  return <Navigate to="/" />;
+ }
+
  return (
   <div className="bg-gradient-to-r from-violet-500 to-purple-500 w-screen h-screen">
    <div className="flex flex-col px-10 w-11/12 md:w-1/3 left-[50%] top-[50%] absolute bg-slate-100 translate-y-[-50%] items-center translate-x-[-50%] text-xl rounded-xl">
     <div className="my-5 text-2xl">Sing In</div>
     <form onSubmit={handleSubmit(onSubmit)}>
      <input
-      type="email"
+      type="text"
       placeholder="Your email..."
       {...register("email", { required: "Укажите почту" })}
       className={`bg-slate-100 w-full border-b-2 ${
