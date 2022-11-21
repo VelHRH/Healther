@@ -3,7 +3,25 @@ import {
  HandThumbDownIcon,
  ClockIcon,
 } from "@heroicons/react/24/solid";
+import { Link } from "react-router-dom";
+import axios from "../../axios";
+import { useState } from "react";
+
 export const FullMeal = (props) => {
+ const [likes, setLikes] = useState(props.likes);
+ const [dislikes, setDislikes] = useState(props.dislikes);
+
+ const putLike = () => {
+  axios.put(`/like/${props.id}`).then((res) => {
+   setLikes(res.data);
+  });
+ };
+
+ const putDislike = () => {
+  axios.put(`/dislike/${props.id}`).then((res) => {
+   setDislikes(res.data);
+  });
+ };
  return (
   <div className="w-full md:w-1/2 p-5 flex flex-col ease-in duration-200 cursor-pointer rounded-lg text-violet-800">
    <img
@@ -18,13 +36,20 @@ export const FullMeal = (props) => {
      <div>120 min</div>
     </div>
     <div className="flex">
-     <div className="flex self-center font-semibold text-xl items-center hover:text-violet-500">
+     <div
+      onClick={putLike}
+      className="flex self-center font-semibold text-xl items-center hover:text-violet-500"
+     >
       <HandThumbUpIcon className="w-6 mr-1" />
-      <div>{props.likes}</div>
+      <div>{likes}</div>
      </div>
-     <div className="flex self-center font-semibold text-xl items-center ml-3 hover:text-violet-500">
+
+     <div
+      onClick={putDislike}
+      className="flex self-center font-semibold text-xl items-center ml-3 hover:text-violet-500"
+     >
       <HandThumbDownIcon className="w-6 mr-1" />
-      <div>{props.dislikes}</div>
+      <div>{dislikes}</div>
      </div>
     </div>
    </div>
