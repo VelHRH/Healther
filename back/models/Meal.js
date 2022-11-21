@@ -25,12 +25,12 @@ const MealSchema = new mongoose.Schema(
       required: true
     },
     likes: {
-      type: Number,
-      default: 0
+      type: Array,
+      default: []
     },
     dislikes: {
-      type: Number,
-      default: 0
+      type: Array,
+      default: []
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,

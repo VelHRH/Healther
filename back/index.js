@@ -4,7 +4,7 @@ import multer from 'multer';
 import cors from 'cors'
 import {registerValidation, loginValidation, createExerciseValidation, createProductValidation, createPrimeValidation, createMealValidation} from './validations.js';
 import checkAuth from './utils/checkAuth.js'
-import {UserController, ExerciseController, ProductController, PrimeController, MealController, CheckController} from './controllers/index.js'
+import {UserController, ExerciseController, ProductController, PrimeController, MealController, CheckController, LikeController} from './controllers/index.js'
 
 mongoose.connect('mongodb+srv://admin:wwwwww@cluster0.soz1hvz.mongodb.net/healther?retryWrites=true&w=majority')
 .then(() => console.log("DB OK"))
@@ -50,6 +50,9 @@ app.get('/meals/:id', MealController.getOne);
 app.delete('/meals/:id', checkAuth, MealController.deleteM);
 
 app.post('/check', checkAuth, CheckController.create);
+
+app.put('/like/:id', checkAuth, LikeController.like);
+app.put('/dislike/:id', checkAuth, LikeController.dislike);
 
 app.post('/upload', checkAuth, upload.single('image'), (req, res) => {
   res.json({
