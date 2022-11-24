@@ -1,4 +1,9 @@
-import { EyeIcon, ClockIcon, ArrowPathIcon } from "@heroicons/react/24/solid";
+import {
+ EyeIcon,
+ ClockIcon,
+ ArrowPathIcon,
+ TrashIcon,
+} from "@heroicons/react/24/solid";
 export const FullExercise = (props) => {
  return (
   <div className="w-full md:w-1/2 p-5 flex flex-col ease-in duration-200 cursor-pointer rounded-lg text-violet-800">
@@ -21,6 +26,7 @@ export const FullExercise = (props) => {
      <EyeIcon className="w-6 mr-1" />
      <div>{props.viewsCount}</div>
     </div>
+    <TrashIcon className="w-6" />
    </div>
    <div className="text-justify mt-5">{props.text}</div>
   </div>

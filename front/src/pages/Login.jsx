@@ -18,10 +18,11 @@ export function Login() {
   },
   mode: "onChange",
  });
+
  const onSubmit = async (values) => {
   const data = await dispatch(fetchAuth(values));
   if (!data.payload) {
-   return alert("Unable to register");
+   return alert("Unable to login");
   }
   if ("token" in data.payload) {
    window.localStorage.setItem("token", data.payload.token);

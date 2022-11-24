@@ -28,7 +28,7 @@ export function MealPage() {
    <div className="flex mt-20">
     <Navbox />
     <FullMeal
-     id={data._id}
+     id={id}
      title={data.title}
      text={data.recipe}
      likes={data.likes.length - 1}
