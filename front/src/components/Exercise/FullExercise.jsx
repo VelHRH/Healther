@@ -6,7 +6,6 @@ import {
 } from "@heroicons/react/24/solid";
 import { useDispatch } from "react-redux";
 import { fetchRemoveExercises } from "../../redux/slices/exercises";
-import { Link } from "react-router-dom";
 
 export const FullExercise = (props) => {
  const dispatch = useDispatch();

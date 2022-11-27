@@ -6,6 +6,7 @@ import { logout, selectIsAuth } from "../redux/slices/auth";
 export const Header = () => {
  const dispatch = useDispatch();
  const isLogged = useSelector(selectIsAuth);
+ const userData = useSelector((state) => state.auth.data);
 
  const onClickLogout = () => {
   if (window.confirm("You sure yoy want to log out?")) {
@@ -36,17 +37,19 @@ export const Header = () => {
      <div className="flex items-center">
       <Link to="/auth/me">
        <img
-        src="https://www.w3schools.com/howto/img_avatar2.png"
+        src={userData.avatarUrl}
         alt="Profile"
-        className="w-14 h-14 rounded-[50%] cursor-pointer"
+        className="w-14 h-14 rounded-full cursor-pointer object-cover"
        />
       </Link>
-      <div
-       onClick={onClickLogout}
-       className="border-2 ml-3 border-red-600 p-1 text-sm rounded-md cursor-pointer text-slate-50 bg-red-600 hover:bg-transparent hover:text-red-600 ease-in duration-200"
-      >
-       Log Out
-      </div>
+      <Link to="/">
+       <div
+        onClick={onClickLogout}
+        className="border-2 ml-3 border-red-600 p-1 text-sm rounded-md cursor-pointer text-slate-50 bg-red-600 hover:bg-transparent hover:text-red-600 ease-in duration-200"
+       >
+        Log Out
+       </div>
+      </Link>
      </div>
     ) : (
      <div className="flex font-semibold cursor-pointer">

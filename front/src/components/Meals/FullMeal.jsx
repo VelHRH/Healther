@@ -8,7 +8,6 @@ import axios from "../../axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { fetchRemoveMeals } from "../../redux/slices/meals";
-import { Link } from "react-router-dom";
 
 export const FullMeal = (props) => {
  const [likes, setLikes] = useState(props.likes);
