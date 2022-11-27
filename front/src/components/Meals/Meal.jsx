@@ -14,11 +14,11 @@ export const Meal = (props) => {
      <div className="flex">
       <div className="flex self-center font-semibold text-xl items-center mr-5">
        <HandThumbUpIcon className="w-6 mr-1" />
-       <div>{props.likes.length - 1}</div>
+       <div>{props.likes.length}</div>
       </div>
       <div className="flex self-center font-semibold text-xl items-center">
        <HandThumbDownIcon className="w-6 mr-1" />
-       <div>{props.dislikes.length - 1}</div>
+       <div>{props.dislikes.length}</div>
       </div>
      </div>
     </div>

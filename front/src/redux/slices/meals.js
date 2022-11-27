@@ -6,6 +6,8 @@ export const fetchMeals = createAsyncThunk('meals/fetchMeals', async () => {
   return data;
 });
 
+export const fetchRemoveMeals = createAsyncThunk('exercises/fetchRemoveMeals', async (id) => await axios.delete(`/meals/${id}`));
+
 const initialState = {
   meals: {
     items: [],
@@ -26,6 +28,9 @@ const mealSlice = createSlice({
       state.meals.items = [];
       state.meals.status = 'error'
     },
+    [fetchRemoveMeals.pending]: (state, action) => {
+      state.meals.items = state.meals.items.filter(obj => obj._id !== action.meta.args)
+    }
   }
 });
 

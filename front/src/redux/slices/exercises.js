@@ -34,7 +34,7 @@ const exerciseSlice = createSlice({
       state.exercises.status = 'error'
     },
     [fetchRemoveExercises.pending]: (state, action) => {
-      state.exercises.items = state.exercises.items.filter(obj => obj._id !== action.meta.args)
+      state.exercises.items = state.exercises.items.filter(obj => obj._id === action.payload)
     }
   }
 });

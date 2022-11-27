@@ -38,9 +38,9 @@ export const FullExercise = (props) => {
      <div>{props.viewsCount}</div>
     </div>
     {props.isEditable && (
-     <Link to="/">
+     <a href="/">
       <TrashIcon onClick={removeEx} className="w-6 hover:text-violet-400" />
-     </Link>
+     </a>
     )}
    </div>
    <div className="text-justify mt-5">{props.text}</div>

@@ -5,10 +5,12 @@ import { TopUsers } from "../components/TopUsers/TopUsers";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "../axios";
+import { useSelector } from "react-redux";
 
 export function MealPage() {
  const [data, setData] = useState();
  const [isLoading, setIsLoading] = useState(true);
+ const userData = useSelector((state) => state.auth.data);
  const { id } = useParams();
  useEffect(() => {
   setIsLoading(true);
@@ -31,9 +33,10 @@ export function MealPage() {
      id={id}
      title={data.title}
      text={data.recipe}
-     likes={data.likes.length - 1}
-     dislikes={data.dislikes.length - 1}
+     likes={data.likes.length}
+     dislikes={data.dislikes.length}
      imageUrl={data.imageUrl}
+     isEditable={userData?._id === data.user}
     />
     <TopUsers />
    </div>

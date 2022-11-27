@@ -2,9 +2,13 @@ import {
  HandThumbUpIcon,
  HandThumbDownIcon,
  ClockIcon,
+ TrashIcon,
 } from "@heroicons/react/24/solid";
 import axios from "../../axios";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchRemoveMeals } from "../../redux/slices/meals";
+import { Link } from "react-router-dom";
 
 export const FullMeal = (props) => {
  const [likes, setLikes] = useState(props.likes);
@@ -20,6 +24,14 @@ export const FullMeal = (props) => {
   axios.put(`/dislike/${props.id}`).then((res) => {
    setDislikes(res.data);
   });
+ };
+
+ const dispatch = useDispatch();
+
+ const removeMeal = () => {
+  if (window.confirm("You sure you want to delete meal?")) {
+   dispatch(fetchRemoveMeals(props.id));
+  }
  };
  return (
   <div className="w-full md:w-1/2 p-5 flex flex-col ease-in duration-200 cursor-pointer rounded-lg text-violet-800">
@@ -51,6 +63,11 @@ export const FullMeal = (props) => {
       <div>{dislikes}</div>
      </div>
     </div>
+    {props.isEditable && (
+     <a href="/meals">
+      <TrashIcon onClick={removeMeal} className="w-6 hover:text-violet-400" />
+     </a>
+    )}
    </div>
    <div className="text-justify mt-5">{props.text}</div>
   </div>
