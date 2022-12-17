@@ -15,7 +15,7 @@ export const Navbox = () => {
   return false;
  };
  const isActiveCalc = () => {
-  if (loc.pathname.slice(0, 9) === "/products") {
+  if (loc.pathname.slice(0, 11) === "/calculator") {
    return true;
   }
   return false;
@@ -43,7 +43,7 @@ export const Navbox = () => {
        isActive={isActive10()}
       />
      </Link>
-     <Link to="/products">
+     <Link to="/calculator">
       <NavItem
        icon={<CalculatorIcon className="w-7 mr-3" />}
        text="Calc"
@@ -76,7 +76,7 @@ export const Navbox = () => {
        isActive={isActive10()}
       />
      </Link>
-     <Link to="/products">
+     <Link to="/calculator">
       <NavItem
        icon={<CalculatorIcon className="w-7" />}
        isActive={isActiveCalc()}

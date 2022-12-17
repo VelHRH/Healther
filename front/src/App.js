@@ -9,6 +9,7 @@ import { Register } from "./pages/Register";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
 import { fetchAuthMe, selectIsAuth } from './redux/slices/auth';
+import Calculator from './pages/Calculator';
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ function App() {
         <Route path='/meals' element={<Meals />} />
         <Route path='/meals/:id' element={<MealPage />} />
         <Route path='/auth/me' element={<MyAccount />} />
+        <Route path='/calculator' element={<Calculator />} />
       </Routes>
     </>
   );
