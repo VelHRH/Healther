@@ -12,7 +12,7 @@ export const like = async (req, res) => {
       meal.likes.splice(meal.likes.indexOf(req.userId), 1);
     }
     await meal.save();
-    res.json(meal.likes);
+    res.json(meal.likes.length);
   }
   catch (err){
     console.log(err);
@@ -34,7 +34,7 @@ export const dislike = async (req, res) => {
       meal.dislikes.splice(meal.dislikes.indexOf(req.userId), 1);
     }
     await meal.save();
-    res.json(meal.dislikes);
+    res.json(meal.dislikes.length);
   }
   catch (err){
     console.log(err);
