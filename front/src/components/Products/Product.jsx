@@ -21,7 +21,7 @@ export const Product = ({
    onDragStart={(e) => dragStartHandler(e, board, obj)}
    onDragEnd={(e) => dragEndHandler(e)}
    onDrop={(e) => dropHandler(e, board, obj)}
-   className="w-[7rem] md:w-[8.5rem] aspect-square bg-black cursor-pointer mx-3 mb-3 rounded-xl shadow-2xl item"
+   className="w-[7rem] md:w-[8.5rem] aspect-square bg-black cursor-pointer mx-3 mb-3 rounded-xl shadow-2xl"
   >
    <img
     src={img}
