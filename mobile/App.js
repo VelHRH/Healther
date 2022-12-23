@@ -1,7 +1,9 @@
-import { FlatList, Text, View, Alert } from 'react-native';
+import { FlatList, Text, View, Alert, StatusBar } from 'react-native';
 import { Exercise } from './components/Exercise';
 import axios from 'axios';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
+import { Nav } from './components/Nav';
 
 export default function App() {
   const [exercises, setExercises] = useState([]);
@@ -16,11 +18,14 @@ export default function App() {
   }, []);
 
   return (
-    <View>
+    <View style={{height: "100%", backgroundColor:"red"}}>
       <FlatList 
         data={exercises}
-        renderItem={({item}) => <Exercise imageUrl="https://s.alamy.com/kdawwlsweh27/2LtummpjO849eQ83yGGiUN/316e62a71020a924f9f663b6ca6b7eda/Fresh_Stock_Content.jpg?fm=jpg" views={500} title={item.name} /> }
+        renderItem={({item}) => <Exercise imageUrl={item.imageUrl} views={item.viewsCount} title={item.title} /> }
       />
+      <MaterialCommunityIcons name="numeric-10-box" size={34} color="black" />
+      <Nav />
+      <StatusBar style="light" />
     </View>
   );
 }

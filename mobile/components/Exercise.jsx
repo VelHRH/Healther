@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import styled from 'styled-components/native';
 
 const ExerciseView = styled.View`
+  width: 100%;
   flex-direction: row;
   padding: 15px;
   border-bottom-width: 2px;
