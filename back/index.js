@@ -35,7 +35,7 @@ app.get('/auth/me', checkAuth, UserController.getMe);
 
 app.post('/exercises', checkAuth, createExerciseValidation, ExerciseController.create);
 app.get('/exercises', ExerciseController.getAll);
-app.get('/exercises/:id', checkAuth, ExerciseController.getOne);
+app.get('/exercises/:id', ExerciseController.getOne);
 app.delete('/exercises/:id', checkAuth, ExerciseController.deleteEx);
 
 app.get('/products', ProductController.getAll);

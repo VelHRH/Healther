@@ -9,6 +9,8 @@ const HeaderContainer = styled.View`
   padding: 10px;
   background: rgba(91, 33, 182, 0.9);
   top: 0px;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 const HeaderText = styled.Text`
@@ -18,8 +20,20 @@ const HeaderText = styled.Text`
   margin-left: 10px;
 `;
 
-export const Header = () => {
+const HeaderPic = styled.Image`
+  height: 40px;
+  width: 40px;
+  border-radius: 15px;
+  margin-right: 10px;
+`;
+
+export const Header = ({navigation}) => {
   return (
-    <HeaderContainer><HeaderText>Healther</HeaderText></HeaderContainer>
+    <Pressable android_ripple={{borderless:true, radius:40}} onPress={() => navigation.navigate("Profile")}>
+    <HeaderContainer>
+      <HeaderText>Healther</HeaderText>
+      <HeaderPic source={{uri: "https://www.pinkvilla.com/files/styles/amp_metadata_content_image/public/itaewon-class_-kim-da-mi-aka-yi-seos-best-style-moments.jpg"}} />
+    </HeaderContainer>
+    </Pressable>
   )
 }

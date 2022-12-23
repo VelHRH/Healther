@@ -18,8 +18,8 @@ export const getAll = async (req, res) => {
 export const getOne = async (req, res) => {
   try{
     const exerciseId = req.params.id;
-    const user = await UserModel.findById(req.userId);
-    let newStreak = user._doc.streak;
+    /*const user = await UserModel.findById(req.userId);
+    let newStreak = user._doc.streak;*/
     ExerciseModel.findOneAndUpdate(
       {
         _id: exerciseId,
@@ -46,7 +46,7 @@ export const getOne = async (req, res) => {
         res.json(doc);
       }
     );
-    const isYesterday = (date) => {
+    /*const isYesterday = (date) => {
       const yesterday = new Date();
       yesterday.setDate(yesterday.getDate() - 1);
       if (yesterday.toDateString() === date.toDateString()) {
@@ -76,7 +76,7 @@ export const getOne = async (req, res) => {
             });
           }
         }
-      );
+      );*/
   }
   catch (err){
     console.log(err);

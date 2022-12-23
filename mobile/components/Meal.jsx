@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, Button, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import styled from 'styled-components/native';
 
 const ExerciseView = styled.View`
@@ -33,16 +33,15 @@ const ExerciseViews = styled.Text`
   color: rgba(91, 33, 182, 0.7);
 `;
 
-export const Exercise = ({title, imageUrl, views, _id, navigation}) => {
+export const Meal = ({title, imageUrl, likes, dislikes}) => {
   return (
-    <Pressable onPress={() => navigation.navigate("FullExercise", {_id: _id})}>
     <ExerciseView>
       <ExerciseImage source={{uri: imageUrl}} />
       <ExerciseDetails>
         <ExerciseTitle>{title}</ExerciseTitle>
-        <ExerciseViews>Views: {views}</ExerciseViews>
+        <ExerciseViews>Liked: {likes}</ExerciseViews>
+        <ExerciseViews>Disliked: {dislikes}</ExerciseViews>
       </ExerciseDetails>
     </ExerciseView>
-    </Pressable>
   )
 }

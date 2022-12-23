@@ -19,11 +19,11 @@ export default function Home({navigation}) {
 
   return (
     <View style={{height: "100%"}}>
-      <Header />
+      <Header navigation={navigation} />
       <FlatList
         style={{marginTop: 60}}
         data={exercises}
-        renderItem={({item}) => <Exercise key={item._id} imageUrl={item.imageUrl} views={item.viewsCount} title={item.title} /> }
+        renderItem={({item}) => <Exercise navigation={navigation} key={item._id} _id={item._id} imageUrl={item.imageUrl} views={item.viewsCount} title={item.title} /> }
       />
       <Nav navigation={navigation} />
       <StatusBar style="light" />
