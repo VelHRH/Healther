@@ -3,13 +3,14 @@ import { Exercise } from './components/Exercise';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Nav } from './components/Nav';
+import { Header } from './components/Header';
 
 export default function App() {
   const [exercises, setExercises] = useState([]);
   useEffect(() => {
     axios
-    .get("https://63a455a4821953d4f2b15c62.mockapi.io/exercises")
-    .then(({data}) => setExercises(data))
+    .get("http://192.168.0.106:4444/exercises")
+    .then(({data}) => {setExercises(data);})
     .catch((err) => {
       console.log(err);
       Alert.alert("Error", "Unable to load");
@@ -18,9 +19,11 @@ export default function App() {
 
   return (
     <View style={{height: "100%"}}>
-      <FlatList 
+      <Header />
+      <FlatList
+        style={{marginTop: 60}}
         data={exercises}
-        renderItem={({item}) => <Exercise imageUrl={item.imageUrl} views={item.viewsCount} title={item.title} /> }
+        renderItem={({item}) => <Exercise key={item._id} imageUrl={item.imageUrl} views={item.viewsCount} title={item.title} /> }
       />
       <Nav />
       <StatusBar style="light" />
