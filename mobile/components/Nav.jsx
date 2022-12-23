@@ -16,20 +16,16 @@ const NavContainer = styled.View`
   border-radius: 60px;
 `;
 
-const ExerciseView = styled.View`
-  flex-direction: row;
-`;
-
-export const Nav = () => {
+export const Nav = ({navigation}) => {
   return (
     <NavContainer>
-      <Pressable android_ripple={{borderless:true, radius:40}}>
+      <Pressable android_ripple={{borderless:true, radius:40}} onPress={() => navigation.navigate("Home")}>
         <MaterialCommunityIcons name="numeric-10-box" size={40} color="white" />
       </Pressable>
       <Pressable android_ripple={{borderless:true, radius:40}}>
         <FontAwesome name="calculator" size={30} color="white" />
       </Pressable>
-      <Pressable android_ripple={{borderless:true, radius:40}}>
+      <Pressable android_ripple={{borderless:true, radius:40}} onPress={() => navigation.navigate("Meals")}>
         <MaterialCommunityIcons name="food-turkey" size={40} color="white" />
       </Pressable>
       <Pressable android_ripple={{borderless:true, radius:40}}>

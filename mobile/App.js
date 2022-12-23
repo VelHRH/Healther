@@ -1,32 +1,25 @@
-import { FlatList, Text, View, Alert, StatusBar } from 'react-native';
-import { Exercise } from './components/Exercise';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { Nav } from './components/Nav';
-import { Header } from './components/Header';
+import Home from "./screens/Home";
+import Meals from "./screens/Meals";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [exercises, setExercises] = useState([]);
-  useEffect(() => {
-    axios
-    .get("http://192.168.0.106:4444/exercises")
-    .then(({data}) => {setExercises(data);})
-    .catch((err) => {
-      console.log(err);
-      Alert.alert("Error", "Unable to load");
-    });
-  }, []);
-
   return (
-    <View style={{height: "100%"}}>
-      <Header />
-      <FlatList
-        style={{marginTop: 60}}
-        data={exercises}
-        renderItem={({item}) => <Exercise key={item._id} imageUrl={item.imageUrl} views={item.viewsCount} title={item.title} /> }
-      />
-      <Nav />
-      <StatusBar style="light" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen 
+          name="Home"
+          component={Home}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen 
+          name="Meals"
+          component={Meals}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
